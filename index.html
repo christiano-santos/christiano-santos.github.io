@@ -2,33 +2,106 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF8">
-    <title>MATA MOSQUITO</title>
+    <meta charset="UTF-8">
+    <title>Vitória</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilo.css" />
-    <script src="js/jogo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        function iniciarJogo() {
+            var nivel = document.getElementById('nivel').value;
+            if (document.getElementById('nivel').value == '') {
+                alert('Favor, escolha um nível!');
+                return false;
+            } else if (document.getElementById('nivel').value == 'chuqnoia') {
+                var chuq = document.createElement('img');
+                chuq.setAttribute('src', 'img/chuq_noia.png')
+                var logo = document.getElementById('logo');
+                logo.appendChild(chuq);
+                setInterval(function () {
+                    window.location.href = 'jogo.html?' + nivel
+                }, 2000)
+            } else {
+                window.location.href = 'jogo.html?' + nivel
+            }
+        }
+
+        // function tocarTrilha() {
+        //     var sound = document.getElementById("init");
+        //     sound.play();
+        // }
+    </script>
 </head>
 
-<body onresize="ajustaTamanhoPalcoJogo()">
-    <audio id="som" src="audio/Guitar hit.mp3"></audio>
-    <audio id="youwin" src="audio/youwin.mp3"></audio>
-    <audio id="youlose" src="audio/youlose.mp3"></audio>
-    <div class="painel">
-        <div class="vidas">
-            <img id="v1" src="img/coracao_cheio.png" />
-            <img id="v2" src="img/coracao_cheio.png" />
-            <img id="v3" src="img/coracao_cheio.png" />
+<body onload="disparamodal()">
+    <audio id="init" src="audio/init.mp3"></audio>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="logo" class="d-flex justify-content-center">
+                    <img src="img/game.png" alt="GAME OVER">
+                </div>
+            </div>
         </div>
-        <div class="cronometro">
-            Tempo restante: <span id="cronometro"></span>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <div class="mb-2">
+                        <select id="nivel" class="form-control">
+                            <option value="">-- Selecione um Nível --</option>
+                            <option value="normal">Normal</option>
+                            <option value="difícil">Difícil</option>
+                            <img src="img/chuq_noia.png">
+                            <option value="chuqnoia">Chuq Nóia</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger btn-lg" onclick="iniciarJogo()">Iniciar Jogo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Button trigger modal -->
+    <button id="disparaModal" data-toggle="modal" data-target="#exampleModal">
+       
+    </button>
 
+    <!-- Modal -->
+    <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog alert alert-primary" role="document">
+            <div class="modal-content  d-flex justify-content-center">
+                <div class="modal-body">
+                    Bem Vindo!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="tocarTrilha()">OK</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
-        document.getElementById('cronometro').innerHTML = tempo;
-        var criaMosquito = setInterval(function () {
-            funcaoRandomina();
-        }, criarMosquitoTempo)
-
+        function disparamodal() {
+            console.log('chamou disparaModal')
+            var butao = document.getElementById('disparaModal');
+            butao.click();
+        }
+        function tocarTrilha() {
+            // var context = new AudioContext();
+            // console.log(context);
+            var sound = document.getElementById("init");
+            sound.play();
+        }
     </script>
 </body>
 
