@@ -1,0 +1,53 @@
+/*cursos vai ficar 30px pra esquerda e 30 px para baixo*/
+:root {
+    --mouse: url('../img/mata_mosca.png') 30 30, auto
+}
+html{
+    cursor: var(--mouse);
+    
+}
+
+body{
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.chuqnoia{
+     cursor: url('../img/avainadepau.png') 30 30, auto;
+}
+.mosquito1{
+    height: 50px;
+    width: 50px;
+}
+.mosquito2{
+    height: 70px;
+    width: 70px;
+}
+.mosquito3{
+    height: 90px;
+    width: 90px;
+}
+.ladoA{
+    transform: scaleX(1);
+}
+.ladoB{
+    transform: scaleX(-1);
+}
+.painel{
+    position: absolute;
+    width: 190px;
+    padding: 10px;
+    left: 0px;
+    bottom: 0px;
+    border-top: solid 1px #fff;
+    background-color: #fff;
+    opacity: 0.7
+}
+.vidas{
+    float: left;
+}
+.cronometro{
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+}
